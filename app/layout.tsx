@@ -10,9 +10,9 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: "M. Tayyab Paracha - Senior Software Engineer",
+  title: "M. Tayyab Paracha - Associate Team Lead",
   description:
-    "Senior Software Engineer from Pakistan with 5+ years of experience in Python frameworks, React, and cloud technologies.",
+    "Associate Team Lead from Pakistan with 5+ years of experience in Python frameworks, React, and cloud technologies.",
   generator: "v0.app",
 }
 

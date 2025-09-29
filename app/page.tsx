@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { SiPython, SiDjango, SiReact, SiFastapi, SiAmazon, SiPostgresql, SiFlask, SiMongodb, SiAwslambda, SiMqtt, SiAmazondynamodb, SiScrapy, SiSelenium, SiAdp } from "react-icons/si"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -167,7 +168,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
                 <div className="space-y-2">
-                  <div className="text-foreground">Senior Software Engineer</div>
+                  <div className="text-foreground">Associate Team Lead</div>
                   <div className="text-muted-foreground">@ Devsinc</div>
                   <div className="text-xs text-muted-foreground">March 2022 — Present</div>
                 </div>
@@ -176,12 +177,19 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
                 <div className="flex flex-wrap gap-2">
-                  {["Python", "Django", "React", "FastAPI", "AWS"].map((skill) => (
+                  {[
+                    { name: "Python", icon: SiPython },
+                    { name: "Django", icon: SiDjango },
+                    { name: "React", icon: SiReact },
+                    { name: "FastAPI", icon: SiFastapi },
+                    { name: "AWS", icon: SiAmazon }
+                  ].map((skill) => (
                     <span
-                      key={skill}
-                      className="skill-tag px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                      key={skill.name}
+                      className="skill-tag px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300 flex items-center gap-2"
                     >
-                      {skill}
+                      <skill.icon className="w-4 h-4" />
+                      {skill.name}
                     </span>
                   ))}
                 </div>
@@ -205,11 +213,17 @@ export default function Home() {
               {[
                 {
                   year: "2022",
-                  role: "Senior Software Engineer",
+                  role: "Associate Team Lead",
                   company: "Devsinc",
                   description:
                     "Managed a team of 5+ developers, successfully delivered solutions for 4 enterprise clients. Developed back-end functionality using Python frameworks and crafted front-end using React.JS.",
-                  tech: ["Python", "Django", "React", "AWS", "PostgreSQL"],
+                  tech: [
+                    { name: "Python", icon: SiPython },
+                    { name: "Django", icon: SiDjango },
+                    { name: "React", icon: SiReact },
+                    { name: "AWS", icon: SiAmazon },
+                    { name: "PostgreSQL", icon: SiPostgresql }
+                  ],
                 },
                 {
                   year: "2019",
@@ -217,7 +231,12 @@ export default function Home() {
                   company: "Freelance",
                   description:
                     "Managed and delivered multiple web application projects with experience in both Django and Flask, demonstrating versatility as required.",
-                  tech: ["Django", "Flask", "PostgreSQL", "MongoDB"],
+                  tech: [
+                    { name: "Django", icon: SiDjango },
+                    { name: "Flask", icon: SiFlask },
+                    { name: "PostgreSQL", icon: SiPostgresql },
+                    { name: "MongoDB", icon: SiMongodb }
+                  ],
                 },
               ].map((job, index) => (
                 <div
@@ -241,10 +260,11 @@ export default function Home() {
                   <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
                     {job.tech.map((tech) => (
                       <span
-                        key={tech}
-                        className="px-2 py-1 text-xs text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500"
+                        key={typeof tech === 'string' ? tech : tech.name}
+                        className="px-2 py-1 text-xs text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500 flex items-center gap-1"
                       >
-                        {tech}
+                        {typeof tech === 'object' && tech.icon ? <tech.icon className="w-3 h-3" /> : null}
+                        {typeof tech === 'string' ? tech : tech.name}
                       </span>
                     ))}
                   </div>
@@ -268,25 +288,45 @@ export default function Home() {
                   title: "Supply Chain Management Portal",
                   excerpt:
                     "Built with Python and React, streamlines operations across suppliers, vendors, quotations, and locations using AWS Amplify and CloudFormation.",
-                  tech: ["Python", "React", "AWS", "Lambda"],
+                  tech: [
+                    { name: "Python", icon: SiPython },
+                    { name: "React", icon: SiReact },
+                    { name: "AWS", icon: SiAmazon },
+                    { name: "Lambda", icon: SiAwslambda }
+                  ],
                 },
                 {
                   title: "Live Interpretation & AI Speech Translation",
                   excerpt:
                     "Architected a scalable real-time translation platform leveraging WebSocket technology and multiple AI services for seamless multilingual communications.",
-                  tech: ["FastAPI", "WebSocket", "Azure", "ChatGPT API"],
+                  tech: [
+                    { name: "FastAPI", icon: SiFastapi },
+                    { name: "WebSocket" },
+                    { name: "Azure", icon: SiAdp },
+                    { name: "ChatGPT API", icon: SiAdp }
+                  ],
                 },
                 {
                   title: "SmartEnergy Analytics Platform",
                   excerpt:
                     "Implemented pollers in Python to collect and process data across organizations, integrating MQTT and SFTP protocols for real-time insights.",
-                  tech: ["Python", "MQTT", "SFTP", "Machine Learning"],
+                  tech: [
+                    { name: "Python", icon: SiPython },
+                    { name: "MQTT", icon: SiMqtt },
+                    { name: "SFTP" },
+                    { name: "Machine Learning" }
+                  ],
                 },
                 {
                   title: "Window Fashion Aggregation Platform",
                   excerpt:
                     "Engineered a high-performance platform processing data from 70+ e-commerce sources, serving thousands of monthly active users.",
-                  tech: ["DynamoDB", "Scrapy", "Selenium", "Flask"],
+                  tech: [
+                    { name: "DynamoDB", icon: SiAmazondynamodb },
+                    { name: "Scrapy", icon: SiScrapy },
+                    { name: "Selenium", icon: SiSelenium },
+                    { name: "Flask", icon: SiFlask }
+                  ],
                 },
               ].map((project, index) => (
                 <article
@@ -303,30 +343,15 @@ export default function Home() {
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech) => (
                         <span
-                          key={tech}
-                          className="px-2 py-1 text-xs text-muted-foreground border border-border rounded"
+                          key={typeof tech === 'string' ? tech : tech.name}
+                          className="px-2 py-1 text-xs text-muted-foreground border border-border rounded flex items-center gap-1"
                         >
-                          {tech}
+                          {typeof tech === 'object' && tech.icon ? <tech.icon className="w-3 h-3" /> : null}
+                          {typeof tech === 'string' ? tech : tech.name}
                         </span>
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <span>View details</span>
-                      <svg
-                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </article>
               ))}
@@ -370,7 +395,6 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { name: "LinkedIn", handle: "tayyab-paracha", url: "https://linkedin.com/in/tayyab-paracha/" },
-                  { name: "GitHub", handle: "@tayyabparacha", url: "https://github.com/tayyabparacha" },
                   { name: "Email", handle: "mtayyabp@gmail.com", url: "mailto:mtayyabp@gmail.com" },
                 ].map((social) => (
                   <Link
